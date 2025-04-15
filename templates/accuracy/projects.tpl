@@ -1,17 +1,17 @@
 {extends "layout-admin.tpl"}
 
-{block "title"}Verificarea acurateței{/block}
+{block "title"}Doğruluk denetimi{/block}
 
 {block "content"}
-  <h3>Verificarea acurateței</h3>
+  <h3>Doğruluk denetimi</h3>
 
   <div class="card mb-3">
-    <div class="card-header">Proiectele mele</div>
+    <div class="card-header">Projelerim</div>
 
     <div class="card-body">
       {include "bs/checkbox.tpl"
         name=''
-        label='include proiectele publice ale altor moderatori'
+        label='diğer moderatörlerin herkese açık projelerini dahil et'
         checked=$includePublic
         inputId='includePublic'}
     </div>
@@ -20,13 +20,13 @@
 
       <thead>
         <tr>
-          <th>nume</th>
-          <th>autor proiect</th>
-          <th>editor</th>
-          <th>sursă</th>
-          <th>definiții</th>
-          <th>erori/KB</th>
-          <th>car/oră</th>
+          <th>isim</th>
+          <th>proje sahibi</th>
+          <th>düzenleyen</th>
+          <th>kaynak</th>
+          <th>tanımlar</th>
+          <th>hata/KB</th>
+          <th>karakter/saat</th>
         </tr>
       </thead>
 
@@ -49,7 +49,7 @@
   </div>
 
   <div class="card mb-3">
-    <div class="card-header">Creează un proiect nou</div>
+    <div class="card-header">Yeni bir proje oluştur</div>
     <div class="card-body">
 
       <form method="post">
@@ -62,7 +62,7 @@
         </div>
 
         <div class="row mb-2">
-          <label class="col-lg-3 col-form-label">utilizator</label>
+          <label class="col-lg-3 col-form-label">kullanıcı</label>
           <div class="col-lg-9">
             <select name="userId" class="form-select select2Users">
               <option value="{$p->userId}" selected></option>
@@ -71,7 +71,7 @@
         </div>
 
         <div class="row mb-2">
-          <label for="f_length" class="col-lg-3 col-form-label">lungime</label>
+          <label for="f_length" class="col-lg-3 col-form-label">uzunluk</label>
           <div class="col-lg-9">
             <input type="number"
               id="f_length"
@@ -79,20 +79,20 @@
               name="length"
               value="{$length}">
             <div class="form-text">
-              lungimea totală a definițiilor pe care doriți să le evaluați
+              değerlendirmek istediğiniz tanımların toplam uzunluğu
             </div>
           </div>
         </div>
 
         <div class="row mb-2">
-          <label for="sourceDropDown" class="col-lg-3 col-form-label">sursă (opțional)</label>
+          <label for="sourceDropDown" class="col-lg-3 col-form-label">kaynak (isteğe bağlı)</label>
           <div class="col-lg-9">
             {include "bits/sourceDropDown.tpl" name="sourceId" sourceId=$p->sourceId}
           </div>
         </div>
 
         <div class="row mb-2">
-          <label for="f_prefix" class="col-lg-3 col-form-label">prefix (opțional)</label>
+          <label for="f_prefix" class="col-lg-3 col-form-label">ön ek (isteğe bağlı)</label>
           <div class="col-lg-9">
             <input type="text"
               id="f_prefix"
@@ -100,13 +100,13 @@
               name="lexiconPrefix"
               value="{$p->lexiconPrefix}">
             <div class="form-text">
-              selectează doar definiții care încep cu acest prefix
+              yalnızca bu ön ekle başlayan tanımları seç
             </div>
           </div>
         </div>
 
         <div class="row mb-2">
-          <label for="f_startDate" class="col-lg-3 col-form-label">dată de început (opțional)</label>
+          <label for="f_startDate" class="col-lg-3 col-form-label">başlangıç tarihi (isteğe bağlı)</label>
           <div class="col-lg-9">
             <input
               type="text"
@@ -119,7 +119,7 @@
         </div>
 
         <div class="row mb-2">
-          <label for="f_endDate" class="col-lg-3 col-form-label">dată de sfârșit (opțional)</label>
+          <label for="f_endDate" class="col-lg-3 col-form-label">bitiş tarihi (isteğe bağlı)</label>
           <div class="col-lg-9">
             <input
               type="text"
@@ -132,7 +132,7 @@
         </div>
 
         <div class="row mb-2">
-          <label class="col-lg-3 col-form-label">vizibilitate</label>
+          <label class="col-lg-3 col-form-label">görünürlük</label>
           <div class="col-lg-9">
             {include "bits/dropdown.tpl"
               name="visibility"
@@ -144,7 +144,7 @@
         <div class="row mb-2">
           <div class="offset-lg-3 col-lg-9">
             <button class="btn btn-primary" type="submit" name="submitButton">
-              creează
+              oluştur
             </button>
           </div>
         </div>

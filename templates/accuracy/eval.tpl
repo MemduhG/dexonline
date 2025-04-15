@@ -1,22 +1,22 @@
 {extends "layout-admin.tpl"}
 
-{block "title"}{$project->name} | verificarea acurateței{/block}
+{block "title"}{$project->name} | doğruluk denetimi{/block}
 
 {block "content"}
-  <h3>Proiect de verificare a acurateței - {$project->name}</h3>
+  <h3>Doğruluk denetimi projesi - {$project->name}</h3>
 
   {if $def}
     <div class="card mb-3">
       <div class="card-header">
-        Definiția curentă
+        Geçerli tanım
         {if !$mine}
-          ({$errors} erori)
+          ({$errors} hata)
         {/if}
 
         <a class="btn btn-outline-secondary btn-sm float-end"
           href="{Router::link('definition/edit')}/{$def->id}">
           {include "bits/icon.tpl" i=edit}
-          editează
+          düzenle
         </a>
       </div>
 
@@ -52,7 +52,7 @@
             <div class="col-12">
               <button class="btn btn-primary ms-2" type="submit" name="saveButton">
                 {include "bits/icon.tpl" i=save}
-                <u>s</u>alvează și preia următoarea
+                <u>k</u>aydet ve sonrakini al
               </button>
             </div>
 
@@ -68,12 +68,12 @@
         </p>
 
         <div>
-          intrări asociate:
+          ilişkili girdiler:
           {include "bits/adminEntryList.tpl" entries=$def->getEntries()}
         </div>
 
         {if count($homonyms)}
-          intrări omonime:
+          eşanlamlı girdiler:
           {include "bits/adminEntryList.tpl" entries=$homonyms}
         {/if}
 
@@ -83,47 +83,46 @@
     <div class="card mb-3">
       <div class="card-header">Definiția curentă</div>
       <div class="card-body">
-        Nu mai există definiții neevaluate. Puteți revizita una dintre
-        definițiile de mai jos.
+        Değerlendirilmemiş başka tanım yok. Aşağıdaki tanımlardan birini yeniden inceleyebilirsiniz.
       </div>
     </div>
   {/if}
 
   <div class="card mb-3">
-    <div class="card-header">Raport de acuratețe</div>
+    <div class="card-header">Doğruluk raporu</div>
     <div class="card-body row">
       <dl class="row col-md-6">
-        <dt class="col-md-3">total</dt>
+        <dt class="col-md-3">toplam</dt>
         <dd class="col-md-9">
-          {$project->defCount|nf} definiții,
-          {$project->totalLength|nf} caractere
+          {$project->defCount|nf} tanım,
+          {$project->totalLength|nf} karakter
         </dd>
-        <dt class="col-md-3">eșantion</dt>
+        <dt class="col-md-3">örneklem</dt>
         <dd class="col-md-9">
-          {$project->getSampleDefinitions()|nf} definiții,
-          {$project->getSampleLength()|nf} caractere
+          {$project->getSampleDefinitions()|nf} tanım,
+          {$project->getSampleLength()|nf} karakter
         </dd>
-        <dt class="col-md-3">evaluate</dt>
+        <dt class="col-md-3">değerlendirilen</dt>
         <dd class="col-md-9">
-          {$project->getReviewedDefinitions()|nf} definiții,
-          {$project->getReviewedLength()|nf} caractere
+          {$project->getReviewedDefinitions()|nf} tanım,
+          {$project->getReviewedLength()|nf} karakter
         </dd>
       </dl>
 
       <dl class="row col-md-6">
-        <dt class="col-md-3">erori</dt>
+        <dt class="col-md-3">hatalar</dt>
         <dd class="col-md-9">{$project->getErrorCount()}</dd>
-        <dt class="col-md-3">acuratețe</dt>
+        <dt class="col-md-3">doğruluk</dt>
         <dd class="col-md-9">
           {$project->getAccuracy()|nf:3}%
-          ({$project->getErrorsPerKb()|nf:2} erori / 1.000 caractere)
+          ({$project->getErrorsPerKb()|nf:2} hata / 1.000 karakter)
         </dd>
-        <dt class="col-md-3">viteză</dt>
+        <dt class="col-md-3">hız</dt>
         <dd class="col-md-9">
           {if $project->speed}
-            {$project->getCharactersPerHour()|nf} caractere / oră
+            {$project->getCharactersPerHour()|nf} karakter / saat
           {else}
-            necunoscută
+            bilinmiyor
           {/if}
         </dd>
       </dl>
@@ -137,9 +136,9 @@
       href="#editPanel">
       {include "bits/icon.tpl" i=expand_less class="chevron"}
       {if $mine}
-        Editează proiectul
+        Projeyi düzenle
       {else}
-        Detalii despre proiect
+        Proje detayları
       {/if}
     </div>
 
@@ -148,7 +147,7 @@
       <form method="post">
 
         <div class="row mb-2">
-          <label class="col-sm-2 form-label">nume</label>
+          <label class="col-sm-2 form-label">isim</label>
           <div class="col-sm-10">
             <input type="text"
               class="form-control"
@@ -159,7 +158,7 @@
         </div>
 
         <div class="row mb-2">
-          <label class="col-sm-2 form-label">vizibilitate</label>
+          <label class="col-sm-2 form-label">görünürlük</label>
           <div class="col-sm-10">
             {include "bits/dropdown.tpl"
               name="visibility"
@@ -170,7 +169,7 @@
         </div>
 
         <div class="row mb-2">
-          <label class="col-sm-2 form-label">utilizator</label>
+          <label class="col-sm-2 form-label">kullanıcı</label>
           <label class="col-sm-10 form-label">
             {$project->getUser()->nick}
           </label>
@@ -178,7 +177,7 @@
 
         {if $project->sourceId}
           <div class="row mb-2">
-            <label class="col-sm-2 form-label">sursă</label>
+            <label class="col-sm-2 form-label">kaynak</label>
             <label class="col-sm-10 form-label">
               {$project->getSource()->shortName}
             </label>
@@ -187,7 +186,7 @@
 
         {if $project->hasStartDate()}
           <div class="row mb-2">
-            <label class="col-sm-2 form-label">dată de început</label>
+            <label class="col-sm-2 form-label">başlangıç tarihi</label>
             <label class="col-sm-10 form-label">
               {$project->startDate}
             </label>
@@ -196,7 +195,7 @@
 
         {if $project->hasEndDate()}
           <div class="row mb-2">
-            <label class="col-sm-2 form-label">dată de sfârșit</label>
+            <label class="col-sm-2 form-label">bitiş tarihi</label>
             <label class="col-sm-10 form-label">
               {$project->endDate}
             </label>
@@ -205,7 +204,7 @@
 
         {if $project->lexiconPrefix}
           <div class="row mb-2">
-            <label class="col-sm-2 form-label">prefix</label>
+            <label class="col-sm-2 form-label">ön ek</label>
             <label class="col-sm-10 form-label">
               {$project->lexiconPrefix}
             </label>
@@ -216,7 +215,7 @@
           <div class="row mb-2">
             <div class="col-sm-10 offset-sm-2">
               <button class="btn btn-primary" type="submit" name="editProjectButton">
-                actualizează
+                güncelle
               </button>
             </div>
           </div>
@@ -226,9 +225,9 @@
   </div>
 
   <div class="card mb-3">
-    <div class="card-header">Definiții evaluate</div>
+    <div class="card-header">Değerlendirilmiş tanımlar</div>
     <div class="card-body">
-      <p>Cel mai recent evaluate definiții apar primele. Puteți da clic pentru a le reevalua.</p>
+      <p>En son değerlendirilen tanımlar önce görünür. Yeniden değerlendirmek için tıklayabilirsiniz.</p>
 
       {foreach $definitionData as $rec name=definitionLoop}
         <a href="?projectId={$project->id}&defId={$rec.id}">
@@ -247,12 +246,12 @@
 
     <a class="btn btn-link" href="{Router::link('accuracy/projects')}">
       {include "bits/icon.tpl" i=arrow_back}
-      înapoi la lista de proiecte
+      proje listesine geri dön
     </a>
 
     <button class="btn btn-danger" type="submit" id="deleteButton" name="deleteButton">
       {include "bits/icon.tpl" i=delete}
-      șterge
+      sil
     </button>
   </form>
 {/block}
