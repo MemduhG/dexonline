@@ -1,64 +1,63 @@
 {extends "layout-admin.tpl"}
 
-{block "title"}Editează abrevieri pentru dicționar{/block}
+{block "title"}Sözlük için kısaltmaları düzenle{/block}
 
 {block "content"}
   <h3>Editează abrevieri pentru dicționar</h3>
 
   {notice type=warning}
-    În momentul editării unei abrevieri, prin schimbarea formei acesteia, sunt
-    afectate și celelalte definiții deja moderate din acel dicționar.
+    Bir kısaltma düzenlendiğinde, biçimi değiştirildiğinde, o sözlükte daha önce düzenlenmiş diğer tanımlar da etkilenir.
   {/notice}
 
   <div class="card mb-3">
     <div class="card-header">
-      Alegere sursă
+      Kaynak seçimi
     </div>
     <div class="card-body">
       <form class="d-flex align-items-center mb-3">
-        <label class="me-2">sursa</label>
+        <label class="me-2">kaynak</label>
         {include "bits/sourceDropDown.tpl" sources=$allSources skipAnySource=true}
         <button type="button" class="btn btn-primary ms-2" id="load">
-          afișează
+          göster
         </button>
       </form>
 
-      <h5>Explicații pentru capul de tabel</h5>
+      <h5>Tablo başlığı için açıklamalar</h5>
 
       <dl class="row">
-        <dt class="col-sm-3">Imp. = abreviere impusă</dt>
+        <dt class="col-sm-3">Imp. = Zorunlu kısaltma</dt>
         <dd class="col-sm-9">
-          Nu ia în considerare forma editată și impune forma din câmpul „Abreviere”.
+           Düzenlenmiş biçimi dikkate almaz ve “Kısaltma” alanındaki biçimi zorunlu kılar.
           <div class="text-muted">
-            Folositoare în cazul unui OCR inexact sau inconsistență în dicționar
+            Hatalı OCR veya sözlükte tutarsızlık durumlarında kullanışlıdır
           </div>
         </dd>
 
-        <dt class="col-sm-3">Amb. = abreviere ambiguă</dt>
+        <dt class="col-sm-3">Amb. = Belirsiz kısaltma</dt>
         <dd class="col-sm-9">
-          Pentru situații similare cu <em>loc., ac., cont.</em>
+          <em>loc., ac., cont.</em> gibi durumlar için
         </dd>
 
         <dt class="col-sm-3">CS = case sensitive</dt>
         <dd class="col-sm-9">
-          Diferențiere între majuscule și minuscule: v. ≠ V.
+          Büyük ve küçük harfler arasında ayrım: v. ≠ V.
         </dd>
 
         <dt class="col-sm-3">HTML</dt>
         <dd class="col-sm-9">
-          Valoarea trebuie convertită la HTML.
+          Değer HTML’ye dönüştürülmelidir.
         </dd>
 
-        <dt class="col-sm-3">Abreviere</dt>
+        <dt class="col-sm-3">Kısaltma</dt>
         <dd class="col-sm-9">
-          Permite și alte semne de punctuație (nu doar <code>.</code>) și formatare internă
-          <code>$</code>, <code>@</code>, <code>%</code>, <code>_{}</code>, <code>^{}</code>.
+          Sadece <code>.</code> değil, diğer noktalama işaretlerine ve
+          <code>$</code>, <code>@</code>, <code>%</code>, <code>_{}</code>, <code>^{}</code> gibi iç biçimlendirmeye de izin verir.
         </dd>
 
-        <dt class="col-sm-3">Detalierea abrevierii</dt>
+        <dt class="col-sm-3"> Kısaltmanın detaylandırılması</dt>
         <dd class="col-sm-9">
-          Permite formatare internă <code>$</code>, <code>@</code>, <code>%</code>,
-          <code>_{}</code>, <code>^{}</code>.
+          <code>$</code>, <code>@</code>, <code>%</code>,
+          <code>_{}</code>, <code>^{}</code> gibi iç biçimlendirmeye izin verir..
         </dd>
       </dl>
 

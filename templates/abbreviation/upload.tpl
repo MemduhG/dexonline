@@ -1,10 +1,10 @@
 {extends "layout-admin.tpl"}
 
-{block "title"}Adaugă abrevieri pentru dicționar{/block}
+{block "title"} Sözlüğe kısaltma ekle{/block}
 
 
 {block "content"}
-  <h3>Adaugă abrevieri pentru dicționar</h3>
+  <h3>Sözlüğe kısaltma ekle</h3>
 
   <form method="post" enctype="multipart/form-data">
 
@@ -13,17 +13,17 @@
       <div class="card mb-3">
 
         <div class="card-header">
-          Selectare fișier
+          Dosya seçimi
         </div>
 
         <div class="card-body pb-0">
 
           <div class="row mb-3">
-            <label class="col-md-1 col-form-label">fișier</label>
+            <label class="col-md-1 col-form-label">dosya</label>
             <div class="col-md-6">
               <input class="form-control" type="file" name="file">
             </div>
-            <label class="col-md-2 col-form-label">delimitator</label>
+            <label class="col-md-2 col-form-label">ayraç</label>
             <div class="col-md-2">
               <input class="form-control"
                 type="text"
@@ -31,49 +31,48 @@
                 placeholder="implicit |">
             </div>
             <span class="offset-md-1 col-md-8 text-danger">
-              Important! Asigurați-vă că fișierul este codificat ASCII sau UTF-8.
+               Önemli! Dosyanın ASCII veya UTF-8 formatında kodlandığından emin olun.
             </span>
           </div>
 
           <p>
-            Fișierul sursă trebuie să aibă pe primul rând capul de tabel
+            Kaynak dosyanın ilk satırında tablo başlığı bulunmalıdır
             <strong>enforced|ambiguous|caseSensitive|html|short|internalRep</strong>,
-            iar pe celelate rânduri cinci câmpuri delimitate, conform
-            explicațiilor:
+            ve diğer satırlarda açıklamalara uygun olarak beş ayrılmış alan olmalıdır:
           </p>
 
           <dl class="row">
-            <dt class="col-xl-3">abreviere impusă</dt>
+            <dt class="col-xl-3"> zorunlu kısaltma</dt>
             <dd class="col-xl-9">
-              nu ia în considerare forma editată și impune forma din câmpul
-              short - valoare booleană 0/1
+              düzenlenmiş biçimi dikkate almaz ve “short” alanındaki biçimi zorunlu kılar - 0/1 mantıksal değeri
             </dd>
 
-            <dt class="col-xl-3">abreviere ambiguă</dt>
+            <dt class="col-xl-3">belirsiz kısaltma</dt>
             <dd class="col-xl-9">
-              valoare booleană 0/1
+               0/1 mantıksal değeri
             </dd>
 
-            <dt class="col-xl-3">diferențiere majuscule-minuscule</dt>
+            <dt class="col-xl-3">büyük/küçük harf ayrımı</dt>
             <dd class="col-xl-9">
-              valoare booleană 0/1
+               0/1 mantıksal değeri
             </dd>
 
-            <dt class="col-xl-3">conține HTML</dt>
+            <dt class="col-xl-3">HTML içerir</dt>
             <dd class="col-xl-9">
-              valoare booleană 0/1 - arată dacă valoarea trebuie convertită la HTML
+               0/1 mantıksal değeri - değerin HTML’ye dönüştürülmesi gerekip gerekmediğini belirtir
             </dd>
 
-            <dt class="col-xl-3">abrevierea</dt>
+            <dt class="col-xl-3">kısaltma</dt>
             <dd class="col-xl-9">
-              permite și alte semne de punctuație (nu doar <code>.</code>) și formatare internă
+              Sadece <code>.</code> değil, diğer noktalama işaretlerine ve
               <code>$</code>, <code>@</code>, <code>%</code>, <code>_{}</code>, <code>^{}</code>
+              gibi iç biçimlendirmeye de izin verir
             </dd>
 
-            <dt class="col-xl-3">detalierea abrevierii</dt>
+            <dt class="col-xl-3"> kısaltmanın detaylandırılması</dt>
             <dd class="col-xl-9">
-              permite formatare internă <code>$</code>, <code>@</code>, <code>%</code>,
-              <code>_{}</code>, <code>^{}</code>
+              <code>$</code>, <code>@</code>, <code>%</code>,
+              <code>_{}</code>, <code>^{}</code> gibi iç biçimlendirmeye izin verir
             </dd>
           </dl>
         </div>
@@ -81,7 +80,7 @@
 
       <div>
         <button class="btn btn-primary" type="submit" name="submit">
-          previzualizează
+          önizle
         </button>
       </div>
     {/if}
@@ -91,12 +90,12 @@
       <div class="card mb-3">
 
         <div class="card-header">
-          Alegere sursă
+           Kaynak seçimi
         </div>
 
         <div class="card-body">
           <div class="row">
-            <label class="col-lg-1 form-label">sursa</label>
+            <label class="col-lg-1 form-label">kaynak</label>
             <div class="col-lg-11">
               {include "bits/sourceDropDown.tpl" skipAnySource=true}
             </div>
@@ -119,8 +118,8 @@
               <th>Amb.</th>
               <th>CS</th>
               <th>HTML</th>
-              <th>Abreviere</th>
-              <th>Detalierea abrevierii</th>
+              <th>Kısaltma</th>
+              <th>Kısaltmanın detaylandırılması</th>
             </tr>
           </thead>
           <tbody>
@@ -158,11 +157,11 @@
       <div>
         <button type="submit" class="btn btn-primary" name="saveButton">
           {include "bits/icon.tpl" i=save}
-          <u>s</u>alvează
+          <u>k</u>aydet
         </button>
         <button type="submit" class="btn btn-link" name="cancelButton">
           {include "bits/icon.tpl" i=clear}
-          renunță
+          vazgeç
         </button>
       </div>
     {/if}

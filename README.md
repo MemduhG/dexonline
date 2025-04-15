@@ -1,3 +1,9 @@
+# Turkish Dexonline
+
+To comply with the license we publish here our crudely Turkishized version of the original dexonline software.
+
+
+## Original Readme
 To contribute, please read
 
 * the [installation instructions](https://wiki.dexonline.ro/wiki/Instrucțiuni_de_instalare);
